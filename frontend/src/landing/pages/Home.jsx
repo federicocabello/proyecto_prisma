@@ -10,6 +10,7 @@ import PricingSection from "../components/PricingSection";
 import WebsiteSection from "../components/WebsiteSection";
 import GrowthConsultingSection from "../components/GrowthConsultingSection";
 import Footer from "../components/Footer";
+import FloatingSocials from "../components/FloatingSocials";
 
 function Home() {
   const [backendMessage, setBackendMessage] = useState("");
@@ -37,6 +38,7 @@ function Home() {
       <WebsiteSection />
       <GrowthConsultingSection />
       <Footer />
+      <FloatingSocials />
     </main>
   );
 }

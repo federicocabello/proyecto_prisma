@@ -1,27 +1,27 @@
 const messages = [
   {
     from: "client",
-    text: "Hola, quería saber si tienen turnos disponibles para mañana.",
+    text: "Hola, ¿tenés turno para corte y barba mañana?",
   },
   {
     from: "bot",
-    text: "¡Hola! Claro 😊 ¿Para qué servicio necesitás el turno: corte, barba o corte + barba?",
+    text: "¡Hola! Sí. Mañana tengo 10:30, 16:00 y 18:30. ¿Cuál te sirve?",
   },
   {
     from: "client",
-    text: "Corte + barba.",
+    text: "A las 16:00.",
   },
   {
     from: "bot",
-    text: "Perfecto. Tenemos disponibilidad mañana a las 10:30 AM y 4:00 PM. ¿Cuál horario te queda mejor?",
+    text: "Perfecto. ¿Me pasás tu nombre para dejarlo reservado?",
   },
   {
     from: "client",
-    text: "A las 4 está bien.",
+    text: "Martín López.",
   },
   {
     from: "bot",
-    text: "Listo, puedo reservarlo. Solo necesito tu nombre y número de teléfono para confirmar el turno.",
+    text: "Listo Martín, te agendé mañana a las 16:00 para corte y barba. Te mando recordatorio antes del turno.",
   },
 ];
 
@@ -31,18 +31,16 @@ function AIBotDemo() {
       <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-2 lg:items-center">
         <div>
           <p className="font-bold text-[#00D38E]">
-            Agente automatizado
+            Chatbot con IA
           </p>
 
           <h2 className="mt-3 text-3xl font-black md:text-5xl">
-            Un asistente virtual puede responder consultas mientras vos atendés tu negocio.
+            Desarrollamos agentes automatizados para atender a tus clientes.
           </h2>
 
           <p className="mt-5 text-lg leading-8 text-slate-600">
-            Podemos crear asistentes de respuesta para negocios que reciben
-            consultas por WhatsApp, redes sociales o formularios web. El objetivo
-            es responder rápido, captar datos del cliente y ordenar la información
-            para que ninguna oportunidad se pierda.
+            Responden consultas, toman datos y ayudan a convertir mensajes en
+            ventas, turnos o pedidos desde WhatsApp, redes o tu web.
           </p>
 
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
@@ -52,7 +50,7 @@ function AIBotDemo() {
               </p>
 
               <p className="mt-2 text-sm leading-6 text-slate-600">
-                Respuesta inicial disponible incluso fuera del horario comercial.
+                Atiende consultas fuera del horario comercial.
               </p>
             </div>
 
@@ -62,7 +60,7 @@ function AIBotDemo() {
               </p>
 
               <p className="mt-2 text-sm leading-6 text-slate-600">
-                Captura nombre, teléfono, necesidad y deriva la consulta correcta.
+                Pide datos, ordena pedidos y evita perder oportunidades.
               </p>
             </div>
           </div>
@@ -73,11 +71,11 @@ function AIBotDemo() {
             <div className="mb-5 flex items-center justify-between border-b border-white/10 pb-4">
               <div>
                 <p className="text-sm font-bold text-[#00D38E]">
-                  Demo de atención automática
+                  Ejemplo real
                 </p>
 
                 <h3 className="text-xl font-black text-white">
-                  Conversación de ejemplo
+                  Reserva de turno
                 </h3>
               </div>
 
@@ -96,11 +94,10 @@ function AIBotDemo() {
                     className={`flex ${isBot ? "justify-start" : "justify-end"}`}
                   >
                     <div
-                      className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-6 ${
-                        isBot
-                          ? "bg-white/10 text-slate-200"
-                          : "bg-[#00D38E] text-[#07111F]"
-                      }`}
+                      className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-6 ${isBot
+                        ? "bg-white/10 text-slate-200"
+                        : "bg-[#00D38E] text-[#07111F]"
+                        }`}
                     >
                       {message.text}
                     </div>
@@ -110,8 +107,8 @@ function AIBotDemo() {
             </div>
 
             <div className="mt-5 rounded-2xl border border-white/10 bg-white/5 p-3 text-sm text-slate-400">
-              El asistente puede adaptarse al rubro: barberías, ferreterías,
-              clínicas, alquileres, servicios técnicos, ventas y más.
+              Se adapta a turnos, pedidos, presupuestos, consultas frecuentes y
+              seguimiento de clientes.
             </div>
           </div>
         </div>

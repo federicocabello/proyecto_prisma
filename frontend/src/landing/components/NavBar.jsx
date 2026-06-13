@@ -3,15 +3,19 @@ function Navbar() {
     <header className="sticky top-0 z-50 border-b border-white/10 bg-[#07111F]/90 backdrop-blur-xl">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-6">
         <a href="#inicio" className="flex items-center gap-3">
-          
-            <img src="./icono_prisma.png" alt="Logo" className="h-10 w-10" />
+
+          <img
+            src="./icono_prisma.png"
+            alt="Logo"
+            className="logo-prisma-motion h-10 w-10"
+          />
 
           <div>
             <h1 className="text-lg font-bold text-white md:text-2xl">
               Proyecto Prisma
             </h1>
             <p className="text-xs text-slate-400 md:text-sm">
-              Soluciones digitales para negocios
+              Soluciones para negocios
             </p>
           </div>
         </a>

@@ -8,13 +8,14 @@ const plans = [
     badge: "Atención automática",
     featured: false,
     features: [
+      "Abonás y queda listo para usar",
       "Bot de respuestas para consultas frecuentes",
       "Atención inicial de clientes",
       "Captura de nombre, teléfono y necesidad",
       "Respuestas adaptadas al negocio",
       "Derivación a una persona cuando sea necesario",
       "Configuración inicial incluida",
-      "Prueba gratis de 7 días",
+      "Atención personalizada mensual",
     ],
   },
   {
@@ -26,15 +27,14 @@ const plans = [
     badge: "Más solicitado",
     featured: true,
     features: [
+      "Abonás y queda listo para usar",
       "Sistema web personalizado",
       "Panel administrativo privado",
-      "Dominio o subdominio incluido",
-      "Hosting y base de datos",
-      "Almacenamiento básico",
-      "Usuarios de acceso",
+      "Hosting, base de datos y acceso",
       "Diseño adaptado al negocio",
       "Soporte y mantenimiento básico",
-      "Prueba gratis de 7 días",
+      "Atención personalizada mensual",
+      "Configuración inicial incluida",
     ],
   },
   {
@@ -46,14 +46,14 @@ const plans = [
     badge: "Completo",
     featured: false,
     features: [
+      "Abonás y queda listo para usar",
       "Todo lo del Sistema Web",
       "Agente automatizado para consultas",
       "Bot para WhatsApp o canales digitales",
-      "Automatización de respuestas",
       "Captura de clientes interesados",
       "Integración entre consultas y sistema",
       "Soporte prioritario",
-      "Prueba gratis de 7 días",
+      "Atención personalizada mensual",
     ],
   },
   {
@@ -65,15 +65,14 @@ const plans = [
     badge: "Avanzado",
     featured: false,
     features: [
+      "Implementación lista para trabajar",
       "Sistema avanzado personalizado",
       "Módulos especiales según el negocio",
       "Reportes personalizados",
       "Automatizaciones avanzadas",
       "Integraciones externas",
       "Múltiples usuarios y permisos",
-      "Mayor almacenamiento",
-      "Acompañamiento personalizado",
-      "Prueba inicial según proyecto",
+      "Atención personalizada mensual",
     ],
   },
 ];
@@ -84,17 +83,16 @@ function PricingSection() {
       <div className="mx-auto max-w-7xl">
         <div className="max-w-3xl">
           <p className="font-bold text-[#00D38E]">
-            Planes mensuales
+            Planes de desarrollo
           </p>
 
           <h2 className="mt-3 text-3xl font-black text-white md:text-5xl">
-            Elegí una solución lista para usar y adaptada a tu negocio.
+            Elegí qué herramienta querés sumar a tu negocio.
           </h2>
 
           <p className="mt-5 text-lg leading-8 text-slate-400">
-            Trabajamos con una suscripción mensual que incluye configuración,
-            mantenimiento, soporte básico y la infraestructura necesaria para que
-            tu sistema funcione de forma estable.
+            Desarrollamos sistemas web, agentes automatizados o soluciones
+            completas con configuración, soporte y mantenimiento incluidos.
           </p>
         </div>
 
@@ -106,12 +104,12 @@ function PricingSection() {
               </p>
 
               <h3 className="mt-2 text-2xl font-black text-white">
-                Probá el sistema durante 7 días sin compromiso
+                Probá una versión funcional antes de contratar
               </h3>
 
               <p className="mt-2 max-w-3xl leading-7 text-slate-300">
-                Te mostramos una versión funcional para que puedas ver cómo se
-                adapta a tu negocio antes de contratar el servicio mensual.
+                Vemos tu caso, preparamos una demo y te mostramos cómo podría
+                funcionar en tu negocio.
               </p>
             </div>
 
@@ -124,22 +122,20 @@ function PricingSection() {
           </div>
         </div>
 
-        <div className="mt-12 grid gap-6 lg:grid-cols-4">
+        <div className="mt-12 grid items-stretch gap-6 lg:grid-cols-4">
           {plans.map((plan) => (
             <article
               key={plan.name}
-              className={`relative rounded-3xl border p-6 transition hover:-translate-y-2 ${
-                plan.featured
+              className={`relative flex h-full flex-col rounded-3xl border p-6 transition hover:-translate-y-2 ${plan.featured
                   ? "border-[#00D38E] bg-white text-slate-950 shadow-2xl shadow-[#00D38E]/10"
                   : "border-white/10 bg-white/5 text-white hover:border-[#00D38E]/40"
-              }`}
+                }`}
             >
               <span
-                className={`inline-flex rounded-full px-3 py-1 text-xs font-black ${
-                  plan.featured
+                className={`inline-flex rounded-full px-3 py-1 text-xs font-black ${plan.featured
                     ? "bg-[#00D38E] text-[#07111F]"
                     : "bg-[#00D38E]/10 text-[#00D38E]"
-                }`}
+                  }`}
               >
                 {plan.badge}
               </span>
@@ -149,9 +145,8 @@ function PricingSection() {
               </h3>
 
               <p
-                className={`mt-3 min-h-18 text-sm leading-6 ${
-                  plan.featured ? "text-slate-600" : "text-slate-400"
-                }`}
+                className={`mt-3 min-h-18 text-sm leading-6 ${plan.featured ? "text-slate-600" : "text-slate-400"
+                  }`}
               >
                 {plan.description}
               </p>
@@ -162,18 +157,16 @@ function PricingSection() {
                 </p>
 
                 <p
-                  className={`pb-1 text-sm font-semibold ${
-                    plan.featured ? "text-slate-500" : "text-slate-400"
-                  }`}
+                  className={`pb-1 text-sm font-semibold ${plan.featured ? "text-slate-500" : "text-slate-400"
+                    }`}
                 >
                   {plan.period}
                 </p>
               </div>
 
               <div
-                className={`mt-6 h-px ${
-                  plan.featured ? "bg-slate-200" : "bg-white/10"
-                }`}
+                className={`mt-6 h-px ${plan.featured ? "bg-slate-200" : "bg-white/10"
+                  }`}
               />
 
               <ul className="mt-6 space-y-3">
@@ -192,84 +185,74 @@ function PricingSection() {
                 ))}
               </ul>
 
-              <a
-                href="#contacto"
-                className={`mt-7 block rounded-2xl px-5 py-3 text-center text-sm font-black transition ${
-                  plan.featured
-                    ? "bg-slate-950 text-white hover:bg-[#00D38E] hover:text-[#07111F]"
-                    : "bg-[#00D38E] text-[#07111F] hover:bg-emerald-300"
-                }`}
-              >
-                Consultar este plan
-              </a>
+              <div className="mt-auto pt-7">
+                <a
+                  href="#contacto"
+                  className={`block rounded-2xl px-5 py-3 text-center text-sm font-black transition ${plan.featured
+                      ? "bg-slate-950 text-white hover:bg-[#00D38E] hover:text-[#07111F]"
+                      : "bg-[#00D38E] text-[#07111F] hover:bg-emerald-300"
+                    }`}
+                >
+                  Consultar este plan
+                </a>
+              </div>
             </article>
           ))}
         </div>
 
         <div className="mt-12 rounded-3xl border border-white/10 bg-white/5 p-6">
-  <div className="max-w-3xl">
-    <p className="font-bold text-[#00D38E]">
-      Adicionales disponibles
-    </p>
+          <div className="max-w-3xl">
+            <p className="font-bold text-[#00D38E]">
+              Adicionales disponibles
+            </p>
 
-    <h3 className="mt-3 text-2xl font-black text-white md:text-3xl">
-      Funciones extra para sistemas más completos.
-    </h3>
+            <h3 className="mt-3 text-2xl font-black text-white md:text-3xl">
+              Funciones extra para sistemas más completos.
+            </h3>
 
-    <p className="mt-3 leading-7 text-slate-400">
-      Algunos negocios necesitan funciones especiales según su público, zona o
-      forma de trabajo. Estos adicionales se cotizan según el alcance del
-      proyecto.
-    </p>
-  </div>
+            <p className="mt-3 leading-7 text-slate-400">
+              Algunos negocios necesitan funciones especiales según su público, zona o
+              forma de trabajo. Estos adicionales se cotizan según el alcance del
+              proyecto.
+            </p>
+          </div>
 
-  <div className="mt-6 grid gap-4 md:grid-cols-3">
-    <div className="rounded-3xl border border-white/10 bg-[#07111F] p-5">
-      <p className="text-2xl">🌎</p>
-      <h4 className="mt-3 font-black text-white">
-        Sistema multiidioma
-      </h4>
-      <p className="mt-2 text-sm leading-6 text-slate-400">
-        Ideal para negocios que atienden clientes en español, inglés u otros
-        idiomas.
-      </p>
-    </div>
+          <div className="mt-6 grid gap-4 md:grid-cols-3">
+            <div className="rounded-3xl border border-white/10 bg-[#07111F] p-5">
+              <p className="text-2xl">🌎</p>
+              <h4 className="mt-3 font-black text-white">
+                Sistema multiidioma
+              </h4>
+              <p className="mt-2 text-sm leading-6 text-slate-400">
+                Ideal para negocios que atienden clientes en español, inglés u otros
+                idiomas.
+              </p>
+            </div>
 
-    <div className="rounded-3xl border border-white/10 bg-[#07111F] p-5">
-      <p className="text-2xl">🌗</p>
-      <h4 className="mt-3 font-black text-white">
-        Tema claro / oscuro
-      </h4>
-      <p className="mt-2 text-sm leading-6 text-slate-400">
-        Permite que el usuario cambie la apariencia del sistema según su
-        preferencia.
-      </p>
-    </div>
+            <div className="rounded-3xl border border-white/10 bg-[#07111F] p-5">
+              <p className="text-2xl">🌗</p>
+              <h4 className="mt-3 font-black text-white">
+                Tema claro / oscuro
+              </h4>
+              <p className="mt-2 text-sm leading-6 text-slate-400">
+                Permite que el usuario cambie la apariencia del sistema según su
+                preferencia.
+              </p>
+            </div>
 
-    <div className="rounded-3xl border border-white/10 bg-[#07111F] p-5">
-      <p className="text-2xl">⚙️</p>
-      <h4 className="mt-3 font-black text-white">
-        Módulos personalizados
-      </h4>
-      <p className="mt-2 text-sm leading-6 text-slate-400">
-        Funciones especiales para procesos únicos del negocio, reportes o
-        integraciones.
-      </p>
-    </div>
-  </div>
-</div>
-
-        <div className="mt-8 rounded-3xl border border-white/10 bg-white/5 p-6 text-slate-300">
-          <p className="font-bold text-white">
-            Nota:
-          </p>
-
-          <p className="mt-2 leading-7">
-            Los precios pueden variar según el tamaño del sistema, cantidad de
-            módulos, almacenamiento requerido, integraciones y nivel de
-            personalización solicitado por el cliente.
-          </p>
+            <div className="rounded-3xl border border-white/10 bg-[#07111F] p-5">
+              <p className="text-2xl">⚙️</p>
+              <h4 className="mt-3 font-black text-white">
+                Módulos personalizados
+              </h4>
+              <p className="mt-2 text-sm leading-6 text-slate-400">
+                Lector de códigos de barra, generación de facturas, PDFs,
+                reportes, integraciones o funciones propias del negocio.
+              </p>
+            </div>
+          </div>
         </div>
+
       </div>
     </section>
   );

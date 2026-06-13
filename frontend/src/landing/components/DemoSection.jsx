@@ -106,16 +106,15 @@ function DemoSection() {
     >
       <div className="mx-auto max-w-7xl">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="font-bold text-[#00D38E]">Demos disponibles</p>
+          <p className="font-bold text-[#00D38E]">Demos por rubro</p>
 
           <h2 className="mt-3 text-3xl font-black md:text-5xl">
-            Explorá soluciones por rubro.
+            Mirá cómo podría funcionar tu negocio.
           </h2>
 
           <p className="mt-5 text-lg leading-8 text-slate-600">
-            Cada demo muestra un ejemplo adaptado a un tipo de negocio. La idea
-            es que puedas visualizar cómo se vería una solución real para tu
-            rubro antes de solicitar una versión personalizada.
+            Elegí un rubro y explorá un sistema pensado para vender, organizar
+            tareas y controlar mejor cada movimiento.
           </p>
         </div>
 

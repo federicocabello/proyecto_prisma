@@ -13,15 +13,19 @@ function Hero({ backendMessage }) {
             Desarrollo · Automatización · Estrategias
           </span>
 
-          <h2 className="mt-7 flex items-center gap-3 text-4xl font-black leading-tight tracking-tight text-white sm:text-5xl md:text-6xl relative">
-            Potenciá tus ganancias con nuestras herramientas
-            <span className="relative inline-block w-10 h-10 right-20">
-              <span className="absolute bottom-0 left-0 animate-rocket-diagonal">🚀</span>
-            </span>
+          <h2 className="relative mt-7 max-w-3xl text-4xl font-black leading-tight tracking-tight text-white sm:text-5xl md:text-6xl">
+            <span className="relative inline-flex pr-14 sm:pr-20">
+              Potenciá
+              <span className="rocket-profit" aria-hidden="true">
+                <span className="rocket-profit__trail" />
+                <span className="rocket-profit__icon">🚀</span>
+              </span>
+            </span>{" "}
+            tus <span className="text-[#00D38E]">ganancias</span> con herramientas simples
           </h2>
 
           <p className="mt-6 max-w-2xl text-base leading-8 text-slate-300 md:text-lg">
-            <strong className="text-[#00D38E]">Prisma</strong> es un proyecto que ofrece soluciones completas: herramientas para organizar clientes, pagos, inventario y facturación, agentes automatizados para atender consultas, diseño web, marketing, asesoría comercial, estrategias para atraer clientes y métricas para mejorar tu negocio.
+            <strong className="text-[#00D38E]">Prisma</strong> crea sistemas, webs y automatizaciones para ordenar tu negocio, vender mejor y tomar decisiones con datos claros.
           </p>
 
           <div className="mt-8 grid gap-3 sm:flex sm:flex-wrap">
