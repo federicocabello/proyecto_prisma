@@ -51,7 +51,7 @@ const appointments = [
 
 function BarberiaAppointments() {
   return (
-    <section className="rounded-3xl bg-white p-6 shadow-sm">
+    <section className="rounded-3xl bg-white p-4 shadow-sm sm:p-6">
       <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
         <div>
           <h3 className="text-2xl font-black text-slate-950">

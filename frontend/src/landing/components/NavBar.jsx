@@ -22,10 +22,6 @@ function Navbar() {
 
         <div className="hidden gap-7 text-sm font-medium text-slate-300 md:flex">
           <a href="#inicio" className="hover:text-[#00D38E]">
-            Inicio
-          </a>
-
-          <a href="#soluciones" className="hover:text-[#00D38E]">
             Soluciones
           </a>
 
@@ -33,16 +29,16 @@ function Navbar() {
             Demos
           </a>
 
-          <a href="#webs" className="hover:text-[#00D38E]">
-            Webs
+          <a href="#planes" className="hover:text-[#00D38E]">
+            Precios
           </a>
 
-          <a href="#planes" className="hover:text-[#00D38E]">
-            Planes
+          <a href="#webs" className="hover:text-[#00D38E]">
+            Páginas
           </a>
 
           <a href="#estrategia" className="hover:text-[#00D38E]">
-            Estrategia
+            Asesoría comercial
           </a>
 
           <a href="#contacto" className="hover:text-[#00D38E]">

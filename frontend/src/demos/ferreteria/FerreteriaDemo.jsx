@@ -39,9 +39,9 @@ function FerreteriaDemo() {
 
       <section className="lg:ml-72">
         <div className="mx-auto max-w-7xl px-5 py-6 md:px-8">
-          <div className="mb-6 flex items-center justify-between lg:hidden">
-            <div>
-              <h1 className="text-xl font-black text-slate-950">
+          <div className="mb-6 flex items-center justify-between gap-3 lg:hidden">
+            <div className="min-w-0">
+              <h1 className="break-words text-xl font-black text-slate-950">
                 Demo Ferretería
               </h1>
               <p className="text-sm text-slate-500">Proyecto Prisma</p>
@@ -49,7 +49,7 @@ function FerreteriaDemo() {
 
             <Link
               to="/"
-              className="rounded-xl bg-slate-950 px-4 py-2 text-sm font-bold text-white"
+              className="shrink-0 rounded-xl bg-slate-950 px-4 py-2 text-sm font-bold text-white"
             >
               Volver
             </Link>

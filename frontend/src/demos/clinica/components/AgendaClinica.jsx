@@ -38,9 +38,9 @@ function AgendaClinica() {
         {agenda.map((item) => (
           <div
             key={`${item.time}-${item.patient}`}
-            className="flex gap-4 rounded-2xl border border-slate-200 p-4"
+            className="flex flex-col gap-3 rounded-2xl border border-slate-200 p-4 sm:flex-row sm:gap-4"
           >
-            <div className="h-fit rounded-2xl bg-slate-950 px-4 py-3 text-sm font-black text-white">
+            <div className="h-fit w-fit rounded-2xl bg-slate-950 px-4 py-3 text-sm font-black text-white">
               {item.time}
             </div>
 

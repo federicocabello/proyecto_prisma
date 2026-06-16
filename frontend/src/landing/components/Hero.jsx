@@ -10,22 +10,22 @@ function Hero({ backendMessage }) {
       <div className="relative mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-2">
         <div className="animate-fade-up">
           <span className="inline-flex rounded-full border border-[#00D38E]/30 bg-[#00D38E]/10 px-4 py-2 text-sm font-semibold text-[#00D38E]">
-            Desarrollo · Automatización · Estrategias
+            Desarrollo · Automatización · Marketing
           </span>
 
-          <h2 className="relative mt-7 max-w-3xl text-4xl font-black leading-tight tracking-tight text-white sm:text-5xl md:text-6xl">
-            <span className="relative inline-flex pr-14 sm:pr-20">
-              Potenciá
-              <span className="rocket-profit" aria-hidden="true">
-                <span className="rocket-profit__trail" />
-                <span className="rocket-profit__icon">🚀</span>
-              </span>
-            </span>{" "}
-            tus <span className="text-[#00D38E]">ganancias</span> con herramientas simples
+          <h2 className="relative mt-7 max-w-3xl pr-12 text-4xl font-black leading-tight tracking-tight text-white sm:pr-20 sm:text-5xl md:pr-28 md:text-6xl">
+            Potenciá{" "}
+            tus <span className="text-[#00D38E]">ganancias</span> con nuestras herramientas
+            <span className="rocket-profit" aria-hidden="true">
+              <span className="rocket-profit__trail" />
+              <span className="rocket-profit__spark rocket-profit__spark--one" />
+              <span className="rocket-profit__spark rocket-profit__spark--two" />
+              <span className="rocket-profit__icon">🚀</span>
+            </span>
           </h2>
 
           <p className="mt-6 max-w-2xl text-base leading-8 text-slate-300 md:text-lg">
-            <strong className="text-[#00D38E]">Prisma</strong> crea sistemas, webs y automatizaciones para ordenar tu negocio, vender mejor y tomar decisiones con datos claros.
+            En <strong className="text-[#00D38E]">Prisma</strong> desarrollamos sistemas, páginas webs y automatizaciones para mejorar tu negocio, generar mayores ganancias y evitar pérdidas.
           </p>
 
           <div className="mt-8 grid gap-3 sm:flex sm:flex-wrap">

@@ -31,7 +31,7 @@ const products = [
 
 function FerreteriaProducts() {
   return (
-    <section className="rounded-3xl bg-white p-6 shadow-sm">
+    <section className="rounded-3xl bg-white p-4 shadow-sm sm:p-6">
       <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
         <div>
           <h3 className="text-2xl font-black text-slate-950">
@@ -42,7 +42,7 @@ function FerreteriaProducts() {
           </p>
         </div>
 
-        <button className="rounded-2xl bg-slate-950 px-5 py-3 text-sm font-bold text-white hover:bg-[#00D38E] hover:text-[#07111F]">
+        <button className="w-full rounded-2xl bg-slate-950 px-5 py-3 text-sm font-bold text-white hover:bg-[#00D38E] hover:text-[#07111F] md:w-auto">
           Nuevo producto
         </button>
       </div>

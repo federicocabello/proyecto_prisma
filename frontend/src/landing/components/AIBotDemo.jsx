@@ -56,7 +56,7 @@ function AIBotDemo() {
 
             <div className="rounded-3xl bg-white p-5 shadow-sm">
               <p className="text-2xl font-black text-slate-950">
-                +Orden
+                + Control
               </p>
 
               <p className="mt-2 text-sm leading-6 text-slate-600">

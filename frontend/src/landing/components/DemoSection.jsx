@@ -105,7 +105,7 @@ function DemoSection() {
       className="overflow-hidden bg-slate-50 px-5 py-24 text-slate-900 md:px-6"
     >
       <div className="mx-auto max-w-7xl">
-        <div className="mx-auto max-w-3xl text-center">
+        <div className="mx-auto max-w-5xl text-center">
           <p className="font-bold text-[#00D38E]">Demos por rubro</p>
 
           <h2 className="mt-3 text-3xl font-black md:text-5xl">
@@ -157,11 +157,10 @@ function DemoSection() {
               return (
                 <article
                   key={demo.title}
-                  className={`absolute w-full max-w-[390px] rounded-[2rem] border bg-white p-7 shadow-xl transition-all duration-500 ease-out md:max-w-[460px] ${
-                    isCenter
-                      ? "border-[#00D38E] shadow-2xl shadow-[#00D38E]/10"
-                      : "border-slate-200"
-                  } ${positionClasses[position]}`}
+                  className={`absolute w-full max-w-[390px] rounded-[2rem] border bg-white p-7 shadow-xl transition-all duration-500 ease-out md:max-w-[460px] ${isCenter
+                    ? "border-[#00D38E] shadow-2xl shadow-[#00D38E]/10"
+                    : "border-slate-200"
+                    } ${positionClasses[position]}`}
                 >
                   <div className="absolute inset-x-8 -top-6 mx-auto flex h-12 w-fit items-center gap-2 rounded-full border border-slate-200 bg-white px-4 shadow-sm">
                     <span className="text-xl">{demo.icon}</span>
@@ -172,11 +171,10 @@ function DemoSection() {
 
                   <div className="mt-8 flex justify-center">
                     <div
-                      className={`flex h-24 w-24 items-center justify-center rounded-[2rem] text-5xl transition ${
-                        isCenter
-                          ? "bg-[#00D38E] shadow-xl shadow-[#00D38E]/20"
-                          : "bg-[#00D38E]/10"
-                      }`}
+                      className={`flex h-24 w-24 items-center justify-center rounded-[2rem] text-5xl transition ${isCenter
+                        ? "bg-[#00D38E] shadow-xl shadow-[#00D38E]/20"
+                        : "bg-[#00D38E]/10"
+                        }`}
                     >
                       {demo.icon}
                     </div>
@@ -229,11 +227,10 @@ function DemoSection() {
               key={demo.title}
               type="button"
               onClick={() => setActiveIndex(index)}
-              className={`h-2.5 rounded-full transition-all ${
-                index === activeIndex
-                  ? "w-8 bg-[#00D38E]"
-                  : "w-2.5 bg-slate-300 hover:bg-slate-400"
-              }`}
+              className={`h-2.5 rounded-full transition-all ${index === activeIndex
+                ? "w-8 bg-[#00D38E]"
+                : "w-2.5 bg-slate-300 hover:bg-slate-400"
+                }`}
               aria-label={`Ver ${demo.title}`}
             />
           ))}

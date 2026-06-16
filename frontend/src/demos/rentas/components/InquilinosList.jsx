@@ -38,7 +38,7 @@ function InquilinosList() {
             key={tenant.name}
             className="rounded-2xl border border-slate-200 p-4"
           >
-            <div className="flex items-start justify-between gap-4">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
               <div>
                 <p className="font-black text-slate-950">
                   {tenant.name}
