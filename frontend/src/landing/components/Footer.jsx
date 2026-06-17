@@ -31,10 +31,10 @@ function Footer() {
           <div className="mt-6 grid gap-3 sm:grid-cols-2">
             <div className="footer-credential-card rounded-2xl border border-[#00D38E]/20 bg-[#00D38E]/10 p-4">
               <div className="flex items-center gap-3">
-                <span className="footer-credential-icon flex h-15 w-25 items-center justify-center rounded-xl bg-[#00D38E] text-xl">
+                <span className="footer-credential-icon flex h-12 w-14 shrink-0 items-center justify-center rounded-xl bg-[#00D38E] text-xl sm:h-15 sm:w-25">
                   🎓
                 </span>
-                <div>
+                <div className="min-w-0">
                   <p className="font-black text-white">
                     Formación académica
                   </p>
@@ -47,10 +47,10 @@ function Footer() {
 
             <div className="footer-credential-card rounded-2xl border border-white/10 bg-white/5 p-4">
               <div className="flex items-center gap-3">
-                <span className="footer-credential-icon flex h-15 w-25 items-center justify-center rounded-xl bg-white/10 text-xl">
+                <span className="footer-credential-icon flex h-12 w-14 shrink-0 items-center justify-center rounded-xl bg-white/10 text-xl sm:h-15 sm:w-25">
                   <span className="fi fi-us"></span>
                 </span>
-                <div>
+                <div className="min-w-0">
                   <p className="font-black text-white">
                     +3 años con empresas de EE.UU.
                   </p>
@@ -63,10 +63,10 @@ function Footer() {
 
             <div className="footer-credential-card rounded-2xl border border-white/10 bg-white/5 p-4">
               <div className="flex items-center gap-3">
-                <span className="footer-credential-icon flex h-15 w-25 items-center justify-center rounded-xl bg-white/10 text-xl">
+                <span className="footer-credential-icon flex h-12 w-14 shrink-0 items-center justify-center rounded-xl bg-white/10 text-xl sm:h-15 sm:w-25">
                   <span className="fi fi-ar"></span>
                 </span>
-                <div>
+                <div className="min-w-0">
                   <p className="font-black text-white">
                     +3 años freelance
                   </p>
@@ -79,10 +79,10 @@ function Footer() {
 
             <div className="footer-credential-card rounded-2xl border border-[#00D38E]/20 bg-[#00D38E]/10 p-4">
               <div className="flex items-center gap-3">
-                <span className="footer-credential-icon flex h-15 w-25 items-center justify-center rounded-xl bg-[#00D38E] text-xl">
+                <span className="footer-credential-icon flex h-12 w-14 shrink-0 items-center justify-center rounded-xl bg-[#00D38E] text-xl sm:h-15 sm:w-25">
                   🗣️
                 </span>
-                <div>
+                <div className="min-w-0">
                   <p className="font-black text-white">
                     Inglés B2 certificado
                   </p>
@@ -96,8 +96,8 @@ function Footer() {
 
         </div>
 
-        <div className="footer-contact-card rounded-[2rem] border border-[#00D38E]/20 bg-white/5 p-5 shadow-2xl shadow-[#00D38E]/10 backdrop-blur">
-          <div className="rounded-[1.5rem] bg-[#0B1628] p-6">
+        <div className="footer-contact-card rounded-[2rem] border border-[#00D38E]/20 bg-white/5 p-4 shadow-2xl shadow-[#00D38E]/10 backdrop-blur sm:p-5">
+          <div className="rounded-[1.5rem] bg-[#0B1628] p-4 sm:p-6">
             <div className="flex items-center gap-4">
               <div className="flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-3xl border border-[#00D38E]/30 bg-[#07111F] shadow-lg shadow-[#00D38E]/20">
                 <span className="text-center text-xs font-bold leading-4 text-slate-500">
@@ -118,15 +118,15 @@ function Footer() {
             <div className="mt-6 space-y-3">
               <a
                 href="mailto:contacto@proyectoprisma.com"
-                className="flex items-center justify-between rounded-2xl bg-white/10 px-4 py-3 text-sm font-bold text-white transition hover:bg-[#00D38E] hover:text-[#07111F]"
+                className="flex flex-col gap-1 rounded-2xl bg-white/10 px-4 py-3 text-sm font-bold text-white transition hover:bg-[#00D38E] hover:text-[#07111F] sm:flex-row sm:items-center sm:justify-between"
               >
                 <span>📧 Email</span>
-                <span>contacto@proyectoprisma.com</span>
+                <span className="break-all">contacto@proyectoprisma.com</span>
               </a>
 
               <a
                 href="#planes"
-                className="flex items-center justify-between rounded-2xl bg-white/10 px-4 py-3 text-sm font-bold text-white transition hover:bg-[#00D38E] hover:text-[#07111F]"
+                className="flex items-center justify-between gap-3 rounded-2xl bg-white/10 px-4 py-3 text-sm font-bold text-white transition hover:bg-[#00D38E] hover:text-[#07111F]"
               >
                 <span>💼 Planes</span>
                 <span>Ver opciones</span>
@@ -134,7 +134,7 @@ function Footer() {
 
               <a
                 href="#demos"
-                className="flex items-center justify-between rounded-2xl bg-white/10 px-4 py-3 text-sm font-bold text-white transition hover:bg-[#00D38E] hover:text-[#07111F]"
+                className="flex items-center justify-between gap-3 rounded-2xl bg-white/10 px-4 py-3 text-sm font-bold text-white transition hover:bg-[#00D38E] hover:text-[#07111F]"
               >
                 <span>🚀 Demos</span>
                 <span>Explorar</span>
@@ -156,7 +156,7 @@ function Footer() {
               href="https://wa.me/5492604659499"
               target="_blank"
               rel="noreferrer"
-              className="footer-meeting-button mt-4 inline-flex items-center gap-4 rounded-2xl bg-[#07111F] px-5 py-3 text-sm font-black text-white transition hover:scale-105"
+              className="footer-meeting-button mt-4 inline-flex w-full items-center justify-center gap-4 rounded-2xl bg-[#07111F] px-5 py-3 text-center text-sm font-black text-white transition hover:scale-105 sm:w-auto"
             >
               <span className="footer-meeting-hand scale-150" aria-hidden="true">👉</span>
               Agendemos una reunión

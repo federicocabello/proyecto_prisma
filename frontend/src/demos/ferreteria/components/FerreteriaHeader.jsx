@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 
 function FerreteriaHeader() {
+  const whatsappMessage = encodeURIComponent(
+    "Hola Federico, vi el demo de ferreteria y quiero un sistema asi para mi negocio."
+  );
+
   return (
     <header className="rounded-3xl bg-white p-6 shadow-sm">
       <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
@@ -20,14 +24,16 @@ function FerreteriaHeader() {
         <div className="flex flex-wrap gap-3">
           <Link
             to="/"
-            className="rounded-2xl border border-slate-200 px-5 py-3 text-sm font-bold text-slate-700 hover:bg-slate-50"
+            className="cursor-pointer rounded-2xl border border-slate-200 px-5 py-3 text-sm font-bold text-slate-700 hover:bg-slate-50"
           >
             Volver a inicio
           </Link>
 
           <a
-            href="#"
-            className="rounded-2xl bg-[#00D38E] px-5 py-3 text-sm font-bold text-[#07111F] hover:bg-emerald-300"
+            href={`https://wa.me/5492604659499?text=${whatsappMessage}`}
+            target="_blank"
+            rel="noreferrer"
+            className="cursor-pointer rounded-2xl bg-[#00D38E] px-5 py-3 text-sm font-bold text-[#07111F] shadow-lg shadow-emerald-500/20 transition hover:-translate-y-0.5 hover:bg-emerald-300"
           >
             Quiero este sistema
           </a>

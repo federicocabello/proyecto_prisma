@@ -76,7 +76,52 @@ function BarberiaAppointments() {
         </div>
       </div>
 
-      <div className="overflow-hidden rounded-2xl border border-slate-200">
+      <div className="grid gap-3 md:hidden">
+        {appointments.map((appointment) => (
+          <article
+            key={`${appointment.client}-${appointment.time}`}
+            className="rounded-2xl border border-slate-200 p-4"
+          >
+            <div className="flex items-start justify-between gap-3">
+              <div>
+                <p className="font-black text-slate-950">{appointment.client}</p>
+                <p className="mt-1 text-sm text-slate-500">{appointment.service}</p>
+              </div>
+
+              <span
+                className={`shrink-0 rounded-full px-3 py-1 text-xs font-bold ${
+                  appointment.status === "Completado"
+                    ? "bg-[#00D38E]/10 text-emerald-700"
+                    : appointment.status === "Próximo"
+                    ? "bg-sky-100 text-sky-700"
+                    : appointment.status === "Pendiente"
+                    ? "bg-amber-100 text-amber-700"
+                    : "bg-slate-100 text-slate-600"
+                }`}
+              >
+                {appointment.status}
+              </span>
+            </div>
+
+            <div className="mt-4 grid grid-cols-3 gap-2 text-sm">
+              <div className="rounded-xl bg-slate-50 p-3">
+                <p className="text-xs text-slate-500">Día</p>
+                <p className="font-black text-slate-950">{appointment.date}</p>
+              </div>
+              <div className="rounded-xl bg-slate-50 p-3">
+                <p className="text-xs text-slate-500">Hora</p>
+                <p className="font-black text-slate-950">{appointment.time}</p>
+              </div>
+              <div className="rounded-xl bg-slate-50 p-3">
+                <p className="text-xs text-slate-500">Barbero</p>
+                <p className="font-black text-slate-950">{appointment.barber}</p>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div className="hidden overflow-hidden rounded-2xl border border-slate-200 md:block">
         <div className="overflow-x-auto">
           <table className="w-full min-w-[780px] text-left text-sm">
             <thead className="bg-slate-50 text-slate-500">

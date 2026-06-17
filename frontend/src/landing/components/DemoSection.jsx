@@ -6,52 +6,43 @@ const demos = [
     icon: "🧰",
     title: "Sistema para Ferretería",
     description:
-      "Control de herramientas, tornillos, productos, stock mínimo, ventas, proveedores y caja diaria.",
+      "Buscá productos, vendé rápido, controlá stock, presupuestos, proveedores y caja.",
     tag: "Inventario y ventas",
-    path: "/demo/comercio/ferreteria",
+    path: "/demo/ferreteria",
     active: true,
   },
   {
     icon: "🎨",
     title: "Sistema para Pinturería",
     description:
-      "Gestión de pinturas, colores, marcas, presupuestos, stock, ventas y clientes.",
+      "Organizá pinturas, colores, mezclas, presupuestos, ventas y productos faltantes.",
     tag: "Comercio especializado",
-    path: "/demo/comercio/pintureria",
+    path: "/demo/pintureria",
     active: true,
   },
   {
     icon: "🏪",
     title: "Sistema para Kiosco",
     description:
-      "Ventas rápidas, caja diaria, stock, productos, proveedores y lectura por código de barra.",
+      "Venta rápida, lector de código, control de caja, stock, fiados y proveedores.",
     tag: "Caja y código de barra",
-    path: "/demo/comercio/kiosco",
+    path: "/demo/kiosco",
     active: true,
   },
   {
     icon: "💈",
     title: "Sistema para Barbería",
     description:
-      "Agenda de turnos, clientes, servicios, barberos, ingresos del día y calendario.",
+      "Agendá turnos, cargá clientes, servicios, barberos e ingresos del día.",
     tag: "Turnos y servicios",
     path: "/demo/barberia",
-    active: true,
-  },
-  {
-    icon: "🛠️",
-    title: "Sistema para Servicios Técnicos",
-    description:
-      "Órdenes de trabajo, técnicos, clientes, estados, presupuestos, visitas, fotos y pagos.",
-    tag: "Trabajos y técnicos",
-    path: "/demo/servicios-tecnicos",
     active: true,
   },
   {
     icon: "🏥",
     title: "Sistema para Clínica",
     description:
-      "Pacientes, citas, agenda médica, documentos pendientes, pagos y seguimiento.",
+      "Agenda médica, pacientes, citas, documentos pendientes, pagos y seguimiento.",
     tag: "Pacientes y atención",
     path: "/demo/clinica",
     active: true,
@@ -60,17 +51,26 @@ const demos = [
     icon: "🏘️",
     title: "Sistema para Rentas",
     description:
-      "Propiedades, inquilinos, cobros mensuales, depósitos, contratos, mantenimiento y pagos vencidos.",
+      "Controlá propiedades, inquilinos, cobros mensuales, contratos y mantenimientos.",
     tag: "Alquileres y propiedades",
     path: "/demo/rentas",
     active: true,
   },
   {
+    icon: "🛠️",
+    title: "Sistema para Servicios Técnicos",
+    description:
+      "Estamos preparando una nueva demo para este rubro.",
+    tag: "Próximamente",
+    path: "#",
+    active: false,
+  },
+  {
     icon: "🍽️",
     title: "Sistema para Restaurante",
     description:
-      "Menú, pedidos, mesas, delivery, caja diaria, clientes y reportes.",
-    tag: "Pedidos y caja",
+      "Estamos preparando una nueva demo para este rubro.",
+    tag: "Próximamente",
     path: "#",
     active: false,
   },
@@ -122,7 +122,7 @@ function DemoSection() {
           <button
             type="button"
             onClick={goPrev}
-            className="absolute left-0 top-1/2 z-30 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-slate-200 bg-white text-3xl font-black text-slate-900 shadow-lg transition hover:border-[#00D38E] hover:bg-[#00D38E] hover:text-[#07111F] md:-left-4"
+            className="cursor-pointer absolute left-0 top-1/2 z-30 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-slate-200 bg-white text-3xl font-black text-slate-900 shadow-lg transition hover:border-[#00D38E] hover:bg-[#00D38E] hover:text-[#07111F] md:-left-4"
             aria-label="Demo anterior"
           >
             ‹
@@ -131,7 +131,7 @@ function DemoSection() {
           <button
             type="button"
             onClick={goNext}
-            className="absolute right-0 top-1/2 z-30 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-slate-200 bg-white text-3xl font-black text-slate-900 shadow-lg transition hover:border-[#00D38E] hover:bg-[#00D38E] hover:text-[#07111F] md:-right-4"
+            className="cursor-pointer absolute right-0 top-1/2 z-30 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-slate-200 bg-white text-3xl font-black text-slate-900 shadow-lg transition hover:border-[#00D38E] hover:bg-[#00D38E] hover:text-[#07111F] md:-right-4"
             aria-label="Siguiente demo"
           >
             ›
@@ -194,7 +194,7 @@ function DemoSection() {
                     {demo.active ? (
                       <Link
                         to={demo.path}
-                        className="block rounded-2xl bg-slate-950 px-5 py-4 text-center text-sm font-black text-white transition hover:bg-[#00D38E] hover:text-[#07111F]"
+                        className="cursor-pointer block rounded-2xl bg-slate-950 px-5 py-4 text-center text-sm font-black text-white transition hover:bg-[#00D38E] hover:text-[#07111F]"
                       >
                         Ver demo
                       </Link>
@@ -227,7 +227,7 @@ function DemoSection() {
               key={demo.title}
               type="button"
               onClick={() => setActiveIndex(index)}
-              className={`h-2.5 rounded-full transition-all ${index === activeIndex
+              className={`cursor-pointer h-2.5 rounded-full transition-all ${index === activeIndex
                 ? "w-8 bg-[#00D38E]"
                 : "w-2.5 bg-slate-300 hover:bg-slate-400"
                 }`}

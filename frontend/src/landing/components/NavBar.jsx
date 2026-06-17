@@ -2,7 +2,7 @@ function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-[#07111F]/90 backdrop-blur-xl">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-6">
-        <a href="#inicio" className="flex items-center gap-3">
+        <a href="#inicio" className="cursor-pointer flex items-center gap-3">
 
           <img
             src="./icono_prisma.png"
@@ -21,34 +21,34 @@ function Navbar() {
         </a>
 
         <div className="hidden gap-7 text-sm font-medium text-slate-300 md:flex">
-          <a href="#inicio" className="hover:text-[#00D38E]">
+          <a href="#inicio" className="cursor-pointer hover:text-[#00D38E]">
             Soluciones
           </a>
 
-          <a href="#demos" className="hover:text-[#00D38E]">
+          <a href="#demos" className="cursor-pointer hover:text-[#00D38E]">
             Demos
           </a>
 
-          <a href="#planes" className="hover:text-[#00D38E]">
+          <a href="#planes" className="cursor-pointer hover:text-[#00D38E]">
             Precios
           </a>
 
-          <a href="#webs" className="hover:text-[#00D38E]">
+          <a href="#webs" className="cursor-pointer hover:text-[#00D38E]">
             Páginas
           </a>
 
-          <a href="#estrategia" className="hover:text-[#00D38E]">
+          <a href="#estrategia" className="cursor-pointer hover:text-[#00D38E]">
             Asesoría comercial
           </a>
 
-          <a href="#contacto" className="hover:text-[#00D38E]">
+          <a href="#contacto" className="cursor-pointer hover:text-[#00D38E]">
             Contacto
           </a>
         </div>
 
         <a
           href="#planes"
-          className="hidden rounded-full bg-[#00D38E] px-5 py-2.5 text-sm font-bold text-[#07111F] shadow-lg shadow-[#00D38E]/20 transition hover:scale-105 hover:bg-emerald-300 sm:inline-flex"
+          className="cursor-pointer hidden rounded-full bg-[#00D38E] px-5 py-2.5 text-sm font-bold text-[#07111F] shadow-lg shadow-[#00D38E]/20 transition hover:scale-105 hover:bg-emerald-300 sm:inline-flex"
         >
           7 días gratis
         </a>

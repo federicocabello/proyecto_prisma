@@ -60,7 +60,50 @@ function CobrosMensuales() {
         </button>
       </div>
 
-      <div className="overflow-hidden rounded-2xl border border-slate-200">
+      <div className="grid gap-3 md:hidden">
+        {payments.map((payment) => (
+          <article
+            key={`${payment.tenant}-${payment.unit}`}
+            className="rounded-2xl border border-slate-200 p-4"
+          >
+            <div className="flex items-start justify-between gap-3">
+              <div className="min-w-0">
+                <p className="font-black text-slate-950">{payment.tenant}</p>
+                <p className="mt-1 text-sm text-slate-500">{payment.unit}</p>
+              </div>
+
+              <span
+                className={`shrink-0 rounded-full px-3 py-1 text-xs font-bold ${
+                  payment.status === "Pagado"
+                    ? "bg-[#00D38E]/10 text-emerald-700"
+                    : payment.status === "Pendiente"
+                    ? "bg-amber-100 text-amber-700"
+                    : "bg-red-100 text-red-700"
+                }`}
+              >
+                {payment.status}
+              </span>
+            </div>
+
+            <div className="mt-4 grid grid-cols-3 gap-2 text-sm">
+              <div className="rounded-xl bg-slate-50 p-3">
+                <p className="text-xs text-slate-500">Renta</p>
+                <p className="font-black text-slate-950">{payment.rent}</p>
+              </div>
+              <div className="rounded-xl bg-slate-50 p-3">
+                <p className="text-xs text-slate-500">Vence</p>
+                <p className="font-black text-slate-950">{payment.dueDate}</p>
+              </div>
+              <div className="rounded-xl bg-slate-50 p-3">
+                <p className="text-xs text-slate-500">Método</p>
+                <p className="font-black text-slate-950">{payment.method}</p>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div className="hidden overflow-hidden rounded-2xl border border-slate-200 md:block">
         <div className="overflow-x-auto">
           <table className="w-full min-w-[820px] text-left text-sm">
             <thead className="bg-slate-50 text-slate-500">

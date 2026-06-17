@@ -1,4 +1,4 @@
-function Hero({ backendMessage }) {
+function Hero() {
   return (
     <section
       id="inicio"
@@ -44,12 +44,6 @@ function Hero({ backendMessage }) {
             </a>
           </div>
 
-          <div className="mt-8 rounded-2xl border border-white/10 bg-white/5 p-4 text-sm text-slate-300">
-            <span className="font-bold text-white">Estado backend:</span>{" "}
-            <span className="text-[#00D38E]">
-              {backendMessage || "Verificando conexión..."}
-            </span>
-          </div>
         </div>
 
         <div className="animate-float-soft">
