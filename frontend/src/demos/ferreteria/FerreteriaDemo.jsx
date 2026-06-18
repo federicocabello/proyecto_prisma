@@ -10,6 +10,7 @@ import FerreteriaSuppliers from "./components/FerreteriaSuppliers";
 import FerreteriaQuotes from "./components/FerreteriaQuotes";
 import FerreteriaOrders from "./components/FerreteriaOrders";
 import FerreteriaMissing from "./components/FerreteriaMissing";
+import DemoNotice from "../components/DemoNotice";
 
 const menuItems = [
   { id: "dashboard", label: "Dashboard", detail: "Resumen general del negocio" },
@@ -145,6 +146,7 @@ function FerreteriaDemo() {
           </div>
 
           <FerreteriaHeader />
+          <DemoNotice />
 
           <div className="mt-6 flex gap-2 overflow-x-auto pb-2 lg:hidden">
             {menuItems.map((item) => (

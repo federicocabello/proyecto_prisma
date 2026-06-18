@@ -1,6 +1,8 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 
+import DemoNotice from "../components/DemoNotice";
+
 const currency = new Intl.NumberFormat("es-AR", {
   style: "currency",
   currency: "ARS",
@@ -104,6 +106,7 @@ function KioscoDemo() {
           </div>
 
           <KioscoHeader />
+          <DemoNotice />
 
           <div className="mt-6 flex gap-2 overflow-x-auto pb-2 lg:hidden">
             {menuItems.map((item) => (

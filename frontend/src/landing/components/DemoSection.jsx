@@ -49,7 +49,7 @@ const demos = [
   },
   {
     icon: "🏘️",
-    title: "Sistema para Rentas",
+    title: "Sistema para Alquileres",
     description:
       "Controlá propiedades, inquilinos, cobros mensuales, contratos y mantenimientos.",
     tag: "Alquileres y propiedades",

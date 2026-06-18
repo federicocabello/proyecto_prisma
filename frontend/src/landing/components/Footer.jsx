@@ -101,7 +101,7 @@ function Footer() {
             <div className="flex items-center gap-4">
               <div className="flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-3xl border border-[#00D38E]/30 bg-[#07111F] shadow-lg shadow-[#00D38E]/20">
                 <span className="text-center text-xs font-bold leading-4 text-slate-500">
-                  Foto
+                  <img src="/foto_perfil.jpeg" alt="" />
                 </span>
               </div>
 
@@ -167,7 +167,7 @@ function Footer() {
 
       <div className="relative mx-auto mt-12 flex max-w-7xl flex-col gap-3 border-t border-white/10 pt-6 text-sm text-slate-500 md:flex-row md:items-center md:justify-center">
         <p>
-          © {new Date().getFullYear()} Proyecto Prisma. Soluciones para negocios.
+          © {new Date().getFullYear()} Proyecto Prisma • Soluciones para negocios.
         </p>
       </div>
     </footer>

@@ -335,13 +335,18 @@ function FerreteriaSales({
             ))}
           </select>
 
-          <input
-            type="number"
-            min="1"
-            value={saleForm.quantity}
-            onChange={(event) => updateSaleForm("quantity", event.target.value)}
-            className="rounded-xl border border-slate-200 px-3 py-3 text-sm font-semibold outline-none focus:border-[#00D38E]"
-          />
+          <label className="grid gap-1">
+            <span className="px-1 text-xs font-black uppercase tracking-[0.12em] text-slate-500">
+              Cantidad
+            </span>
+            <input
+              type="number"
+              min="1"
+              value={saleForm.quantity}
+              onChange={(event) => updateSaleForm("quantity", event.target.value)}
+              className="rounded-xl border border-slate-200 px-3 py-3 text-sm font-semibold outline-none focus:border-[#00D38E]"
+            />
+          </label>
 
           <select
             value={saleForm.status}
