@@ -10,8 +10,12 @@ function FerreteriaClients({ clients, setClients }) {
   const [form, setForm] = useState({
     name: "",
     phone: "",
+    address: "",
+    company: "",
     type: "Particular",
     debt: "",
+    notes: "",
+    files: [],
   });
 
   const updateForm = (field, value) => {
@@ -27,13 +31,26 @@ function FerreteriaClients({ clients, setClients }) {
         id: Date.now(),
         name: form.name.trim(),
         phone: form.phone.trim() || "Sin telefono",
+        address: form.address.trim(),
+        company: form.company.trim(),
         type: form.type,
         debt: Number(form.debt || 0),
+        notes: form.notes.trim(),
+        files: form.files,
       },
       ...current,
     ]);
 
-    setForm({ name: "", phone: "", type: "Particular", debt: "" });
+    setForm({
+      name: "",
+      phone: "",
+      address: "",
+      company: "",
+      type: "Particular",
+      debt: "",
+      notes: "",
+      files: [],
+    });
   };
 
   const clearDebt = (clientId) => {
@@ -55,12 +72,18 @@ function FerreteriaClients({ clients, setClients }) {
 
       <form
         onSubmit={addClient}
-        className="mb-6 grid gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-4 lg:grid-cols-5"
+        className="mb-6 grid gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-4 lg:grid-cols-6"
       >
         <input
           value={form.name}
           onChange={(event) => updateForm("name", event.target.value)}
           placeholder="Nombre del cliente"
+          className="rounded-xl border border-slate-200 px-3 py-3 text-sm font-semibold outline-none focus:border-[#00D38E] lg:col-span-2"
+        />
+        <input
+          value={form.company}
+          onChange={(event) => updateForm("company", event.target.value)}
+          placeholder="Empresa"
           className="rounded-xl border border-slate-200 px-3 py-3 text-sm font-semibold outline-none focus:border-[#00D38E] lg:col-span-2"
         />
         <input
@@ -86,6 +109,31 @@ function FerreteriaClients({ clients, setClients }) {
           placeholder="Saldo pendiente"
           className="rounded-xl border border-slate-200 px-3 py-3 text-sm font-semibold outline-none focus:border-[#00D38E]"
         />
+        <input
+          value={form.address}
+          onChange={(event) => updateForm("address", event.target.value)}
+          placeholder="Direccion"
+          className="rounded-xl border border-slate-200 px-3 py-3 text-sm font-semibold outline-none focus:border-[#00D38E] lg:col-span-3"
+        />
+        <label className="grid cursor-pointer gap-1 rounded-xl border border-dashed border-slate-300 bg-white px-3 py-3 text-sm font-semibold text-slate-500 lg:col-span-3">
+          Adjuntar archivos
+          <input
+            type="file"
+            multiple
+            accept=".pdf,image/*"
+            onChange={(event) =>
+              updateForm("files", Array.from(event.target.files ?? []).map((file) => file.name))
+            }
+            className="text-xs"
+          />
+        </label>
+        <textarea
+          value={form.notes}
+          onChange={(event) => updateForm("notes", event.target.value)}
+          placeholder="Notas adicionales"
+          rows={3}
+          className="resize-none rounded-xl border border-slate-200 px-3 py-3 text-sm font-semibold outline-none focus:border-[#00D38E] lg:col-span-6"
+        />
         <button className="cursor-pointer rounded-2xl bg-slate-950 px-5 py-3 text-sm font-bold text-white hover:bg-[#00D38E] hover:text-[#07111F] lg:col-span-5 lg:w-fit">
           Agregar cliente
         </button>
@@ -98,11 +146,33 @@ function FerreteriaClients({ clients, setClients }) {
               <div className="min-w-0">
                 <p className="break-words font-black text-slate-950">{client.name}</p>
                 <p className="mt-1 text-sm text-slate-500">{client.phone}</p>
+                {client.company && (
+                  <p className="mt-1 text-sm font-bold text-slate-700">
+                    {client.company}
+                  </p>
+                )}
               </div>
               <span className="w-fit shrink-0 rounded-full bg-slate-100 px-3 py-1 text-xs font-bold text-slate-600">
                 {client.type}
               </span>
             </div>
+
+            {(client.address || client.notes) && (
+              <div className="mt-4 space-y-2 rounded-xl bg-slate-50 p-3 text-sm">
+                {client.address && (
+                  <p className="text-slate-600">
+                    <span className="font-black text-slate-800">Direccion:</span>{" "}
+                    {client.address}
+                  </p>
+                )}
+                {client.notes && (
+                  <p className="text-slate-600">
+                    <span className="font-black text-slate-800">Notas:</span>{" "}
+                    {client.notes}
+                  </p>
+                )}
+              </div>
+            )}
 
             <div className="mt-4 rounded-xl bg-slate-50 p-3">
               <p className="text-xs font-bold text-slate-500">Saldo pendiente</p>
@@ -110,6 +180,24 @@ function FerreteriaClients({ clients, setClients }) {
                 {client.debt > 0 ? currency.format(client.debt) : "Al dia"}
               </p>
             </div>
+
+            {client.files?.length > 0 && (
+              <div className="mt-4 rounded-xl border border-slate-200 p-3">
+                <p className="text-xs font-black uppercase tracking-[0.12em] text-slate-500">
+                  Adjuntos
+                </p>
+                <div className="mt-2 flex flex-wrap gap-2">
+                  {client.files.map((file) => (
+                    <span
+                      key={file}
+                      className="rounded-full bg-slate-100 px-3 py-1 text-xs font-bold text-slate-600"
+                    >
+                      {file}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {client.debt > 0 && (
               <button

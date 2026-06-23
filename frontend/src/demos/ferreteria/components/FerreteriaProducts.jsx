@@ -11,12 +11,26 @@ const emptyForm = {
   category: "",
   stock: "",
   minStock: "",
+  costPrice: "",
+  profitPercent: "",
   price: "",
+};
+
+const calculateFinalPrice = (costPrice, profitPercent) =>
+  Math.round(Number(costPrice || 0) * (1 + Number(profitPercent || 0) / 100));
+
+const calculateProfitPercent = (costPrice, finalPrice) => {
+  const cost = Number(costPrice || 0);
+  const price = Number(finalPrice || 0);
+
+  if (!cost) return 0;
+  return Math.round(((price - cost) / cost) * 100);
 };
 
 function FerreteriaProducts({ products, setProducts, compact = false }) {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("Todas");
+  const [showLowStockOnly, setShowLowStockOnly] = useState(false);
   const [form, setForm] = useState(emptyForm);
   const [editingId, setEditingId] = useState(null);
 
@@ -31,17 +45,32 @@ function FerreteriaProducts({ products, setProducts, compact = false }) {
         .toLowerCase()
         .includes(search.toLowerCase());
       const matchesCategory = category === "Todas" || product.category === category;
+      const matchesStock = !showLowStockOnly || product.stock <= product.minStock;
 
-      return matchesSearch && matchesCategory;
+      return matchesSearch && matchesCategory && matchesStock;
     });
-  }, [category, products, search]);
+  }, [category, products, search, showLowStockOnly]);
 
-  const lowStockCount = filteredProducts.filter(
+  const lowStockProducts = products.filter(
     (product) => product.stock <= product.minStock
-  ).length;
+  );
+  const lowStockCount = lowStockProducts.length;
 
   const updateForm = (field, value) => {
-    setForm((current) => ({ ...current, [field]: value }));
+    setForm((current) => {
+      const next = { ...current, [field]: value };
+
+      if (field === "costPrice" || field === "profitPercent") {
+        next.price = String(calculateFinalPrice(next.costPrice, next.profitPercent));
+      }
+
+      if (field === "price") {
+        next.price = String(Math.round(Number(value || 0)));
+        next.profitPercent = String(calculateProfitPercent(next.costPrice, next.price));
+      }
+
+      return next;
+    });
   };
 
   const resetForm = () => {
@@ -58,7 +87,9 @@ function FerreteriaProducts({ products, setProducts, compact = false }) {
       category: form.category.trim(),
       stock: Number(form.stock),
       minStock: Number(form.minStock),
-      price: Number(form.price),
+      costPrice: Math.round(Number(form.costPrice || 0)),
+      profitPercent: Math.round(Number(form.profitPercent || 0)),
+      price: Math.round(Number(form.price || 0)),
     };
 
     if (!nextProduct.name || !nextProduct.category) return;
@@ -83,6 +114,8 @@ function FerreteriaProducts({ products, setProducts, compact = false }) {
       category: product.category,
       stock: String(product.stock),
       minStock: String(product.minStock),
+      costPrice: String(product.costPrice ?? Math.round(product.price * 0.68)),
+      profitPercent: String(product.profitPercent ?? 47),
       price: String(product.price),
     });
   };
@@ -101,6 +134,48 @@ function FerreteriaProducts({ products, setProducts, compact = false }) {
           </p>
         </div>
       </div>
+
+      {!compact && (
+        <button
+          type="button"
+          onClick={() => {
+            setShowLowStockOnly(true);
+            setSearch("");
+            setCategory("Todas");
+          }}
+          className={`cursor-pointer mb-6 w-full rounded-2xl border p-4 text-left transition ${
+            lowStockCount
+              ? "border-amber-200 bg-amber-50 hover:border-amber-300"
+              : "border-emerald-200 bg-[#00D38E]/10"
+          }`}
+        >
+          <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+            <div>
+              <p
+                className={`text-sm font-black uppercase tracking-[0.12em] ${
+                  lowStockCount ? "text-amber-700" : "text-emerald-700"
+                }`}
+              >
+                Alerta de stock
+              </p>
+              <p className="mt-1 text-xl font-black text-slate-950">
+                {lowStockCount
+                  ? `${lowStockCount} productos necesitan reposicion`
+                  : "No hay productos bajos en stock"}
+              </p>
+              <p className="mt-1 text-sm font-semibold text-slate-500">
+                {lowStockCount
+                  ? "Toca aca para verlos abajo y modificar stock, minimo o precio."
+                  : "El inventario esta dentro de los niveles configurados."}
+              </p>
+            </div>
+
+            <span className="shrink-0 rounded-xl bg-white px-4 py-2 text-sm font-black text-slate-950">
+              Ver stock bajo
+            </span>
+          </div>
+        </button>
+      )}
 
       {!compact && (
         <form
@@ -138,9 +213,25 @@ function FerreteriaProducts({ products, setProducts, compact = false }) {
           <input
             type="number"
             min="0"
+            value={form.costPrice}
+            onChange={(event) => updateForm("costPrice", event.target.value)}
+            placeholder="Precio costo"
+            className="rounded-xl border border-slate-200 px-3 py-3 text-sm font-semibold outline-none focus:border-[#00D38E]"
+          />
+          <input
+            type="number"
+            min="0"
+            value={form.profitPercent}
+            onChange={(event) => updateForm("profitPercent", event.target.value)}
+            placeholder="% ganancia"
+            className="rounded-xl border border-slate-200 px-3 py-3 text-sm font-semibold outline-none focus:border-[#00D38E]"
+          />
+          <input
+            type="number"
+            min="0"
             value={form.price}
             onChange={(event) => updateForm("price", event.target.value)}
-            placeholder="Precio"
+            placeholder="Precio final"
             className="rounded-xl border border-slate-200 px-3 py-3 text-sm font-semibold outline-none focus:border-[#00D38E]"
           />
 
@@ -172,7 +263,10 @@ function FerreteriaProducts({ products, setProducts, compact = false }) {
 
         <select
           value={category}
-          onChange={(event) => setCategory(event.target.value)}
+          onChange={(event) => {
+            setCategory(event.target.value);
+            setShowLowStockOnly(false);
+          }}
           className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-semibold text-slate-700 outline-none transition focus:border-[#00D38E] focus:bg-white"
         >
           {categories.map((item) => (
@@ -186,6 +280,21 @@ function FerreteriaProducts({ products, setProducts, compact = false }) {
           {filteredProducts.length} productos · {lowStockCount} bajos
         </div>
       </div>
+
+      {showLowStockOnly && (
+        <div className="mb-5 flex flex-col gap-3 rounded-2xl border border-amber-200 bg-amber-50 p-4 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-sm font-bold text-amber-800">
+            Mostrando solo productos bajos en stock.
+          </p>
+          <button
+            type="button"
+            onClick={() => setShowLowStockOnly(false)}
+            className="cursor-pointer rounded-xl bg-white px-4 py-2 text-sm font-black text-slate-700"
+          >
+            Ver todos
+          </button>
+        </div>
+      )}
 
       <div className="grid gap-3 md:hidden">
         {filteredProducts.map((product) => {
@@ -210,7 +319,7 @@ function FerreteriaProducts({ products, setProducts, compact = false }) {
                 </span>
               </div>
 
-              <div className="mt-4 grid grid-cols-3 gap-2 text-sm">
+              <div className="mt-4 grid grid-cols-2 gap-2 text-sm">
                 <div className="rounded-xl bg-slate-50 p-3">
                   <p className="text-xs text-slate-500">Stock</p>
                   <p className="font-black text-slate-950">{product.stock}</p>
@@ -220,7 +329,15 @@ function FerreteriaProducts({ products, setProducts, compact = false }) {
                   <p className="font-black text-slate-950">{product.minStock}</p>
                 </div>
                 <div className="rounded-xl bg-slate-50 p-3">
-                  <p className="text-xs text-slate-500">Precio</p>
+                  <p className="text-xs text-slate-500">Costo</p>
+                  <p className="font-black text-slate-950">{currency.format(product.costPrice ?? product.price * 0.68)}</p>
+                </div>
+                <div className="rounded-xl bg-slate-50 p-3">
+                  <p className="text-xs text-slate-500">% ganancia</p>
+                  <p className="font-black text-slate-950">{product.profitPercent ?? 47}%</p>
+                </div>
+                <div className="rounded-xl bg-slate-50 p-3">
+                  <p className="text-xs text-slate-500">Final</p>
                   <p className="font-black text-slate-950">{currency.format(product.price)}</p>
                 </div>
               </div>
@@ -239,14 +356,16 @@ function FerreteriaProducts({ products, setProducts, compact = false }) {
 
       <div className="hidden overflow-hidden rounded-2xl border border-slate-200 md:block">
         <div className="overflow-x-auto">
-          <table className="w-full min-w-[760px] text-left text-sm">
+          <table className="w-full min-w-[980px] text-left text-sm">
             <thead className="bg-slate-50 text-slate-500">
               <tr>
                 <th className="px-5 py-4 font-bold">Producto</th>
                 <th className="px-5 py-4 font-bold">Categoria</th>
                 <th className="px-5 py-4 font-bold">Stock</th>
                 <th className="px-5 py-4 font-bold">Minimo</th>
-                <th className="px-5 py-4 font-bold">Precio</th>
+                <th className="px-5 py-4 font-bold">Precio costo</th>
+                <th className="px-5 py-4 font-bold">% ganancia</th>
+                <th className="px-5 py-4 font-bold">Precio final</th>
                 <th className="px-5 py-4 font-bold">Estado</th>
                 <th className="px-5 py-4 font-bold">Accion</th>
               </tr>
@@ -264,6 +383,12 @@ function FerreteriaProducts({ products, setProducts, compact = false }) {
                     <td className="px-5 py-4 text-slate-600">{product.category}</td>
                     <td className="px-5 py-4 text-slate-600">{product.stock}</td>
                     <td className="px-5 py-4 text-slate-600">{product.minStock}</td>
+                    <td className="px-5 py-4 font-bold text-slate-900">
+                      {currency.format(product.costPrice ?? product.price * 0.68)}
+                    </td>
+                    <td className="px-5 py-4 font-bold text-slate-900">
+                      {product.profitPercent ?? 47}%
+                    </td>
                     <td className="px-5 py-4 font-bold text-slate-900">
                       {currency.format(product.price)}
                     </td>

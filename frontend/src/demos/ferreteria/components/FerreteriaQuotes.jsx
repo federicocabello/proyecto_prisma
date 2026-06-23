@@ -120,7 +120,7 @@ function FerreteriaQuotes({ products, clients, quotes, setQuotes, setOrders }) {
         </label>
 
         <div className="rounded-xl bg-white px-3 py-3 text-sm font-black text-slate-950 lg:col-span-3">
-          Precio unitario: {currency.format(product?.price ?? 0)}
+          Precio final unitario: {currency.format(product?.price ?? 0)}
         </div>
 
         <div className="rounded-xl bg-white px-3 py-3 text-sm font-black text-slate-950 lg:col-span-3">
@@ -141,7 +141,7 @@ function FerreteriaQuotes({ products, clients, quotes, setQuotes, setOrders }) {
                 <p className="mt-1 break-words font-black text-slate-950">{quote.customer}</p>
                 <p className="mt-1 break-words text-sm text-slate-500">{quote.detail}</p>
                 <p className="mt-1 text-sm font-bold text-slate-700">
-                  Precio unitario: {currency.format(quote.unitPrice ?? 0)}
+                  Precio final unitario: {currency.format(quote.unitPrice ?? 0)}
                 </p>
               </div>
               <p className="shrink-0 text-xl font-black text-slate-950 sm:text-right">{currency.format(quote.total)}</p>

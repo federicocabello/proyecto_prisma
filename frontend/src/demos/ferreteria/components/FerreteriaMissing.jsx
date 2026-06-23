@@ -51,7 +51,7 @@ function FerreteriaMissing({ products, setProducts }) {
                 <p className="font-black text-slate-950">{product.minStock}</p>
               </div>
               <div className="rounded-xl bg-white p-3">
-                <p className="text-xs text-slate-500">Venta</p>
+                <p className="text-xs text-slate-500">Final</p>
                 <p className="font-black text-slate-950">{currency.format(product.price)}</p>
               </div>
             </div>

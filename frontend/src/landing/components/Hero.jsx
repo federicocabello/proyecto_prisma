@@ -25,7 +25,7 @@ function Hero() {
           </h2>
 
           <p className="mt-6 max-w-2xl text-base leading-8 text-slate-300 md:text-lg">
-            En <strong className="text-[#00D38E]">Prisma</strong> desarrollamos sistemas, páginas webs y automatizaciones para mejorar tu negocio, generar mayores ganancias y evitar pérdidas.
+            En <strong className="text-[#00D38E]">Prisma</strong> desarrollamos sistemas, páginas webs y automatizaciones agentes para organizar y hacer crecer tu negocio.
           </p>
 
           <div className="mt-8 grid gap-3 sm:flex sm:flex-wrap">
