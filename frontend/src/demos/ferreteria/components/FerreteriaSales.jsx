@@ -315,13 +315,36 @@ function FerreteriaSales({
       .filter((sale) => {
         const matchesCustomer =
           reportCustomer === "Todos" || sale.customer === reportCustomer;
-        const matchesMonth = !reportMonth || sale.dateISO?.startsWith(reportMonth);
         const matchesFrom = !reportFromDate || sale.dateISO >= reportFromDate;
         const matchesTo = !reportToDate || sale.dateISO <= reportToDate;
 
-        return matchesCustomer && matchesMonth && matchesFrom && matchesTo;
+        return matchesCustomer && matchesFrom && matchesTo;
       })
       .sort((firstSale, secondSale) => getSaleTimestamp(secondSale) - getSaleTimestamp(firstSale));
+    const monthTotal = monthSales.reduce((sum, sale) => sum + sale.total, 0);
+    const monthCost = monthSales.reduce(
+      (sum, sale) => sum + (sale.cost ?? sale.total * 0.68),
+      0
+    );
+    const monthProfit = Math.max(0, monthTotal - monthCost);
+    const monthPending = monthSales
+      .filter((sale) => sale.status !== "Pagado")
+      .reduce((sum, sale) => sum + sale.total, 0);
+    const monthDailyReports = dayLabels.map((day) => {
+      const daySales = monthSales.filter((sale) => sale.day === day);
+      const salesTotal = daySales.reduce((sum, sale) => sum + sale.total, 0);
+      const costTotal = daySales.reduce(
+        (sum, sale) => sum + (sale.cost ?? sale.total * 0.68),
+        0
+      );
+
+      return {
+        label: day,
+        sales: salesTotal,
+        cost: costTotal,
+        profit: Math.max(0, salesTotal - costTotal),
+      };
+    });
     const totalSales = filteredReportSales.reduce((sum, sale) => sum + sale.total, 0);
     const totalCost = filteredReportSales.reduce(
       (sum, sale) => sum + (sale.cost ?? sale.total * 0.68),
@@ -395,11 +418,71 @@ function FerreteriaSales({
             Reportes de ventas
           </h3>
           <p className="mt-1 text-sm text-slate-500">
-            Filtra por cliente, mes o rango de fechas para revisar ventas, cobros y movimientos con hora.
+            Reporte mensual separado del reporte por rango de fechas.
           </p>
         </div>
 
-        <div className="mb-6 grid gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-4 md:grid-cols-2 xl:grid-cols-4">
+        <div className="mb-8 rounded-3xl border border-slate-200 bg-slate-50 p-4 sm:p-5">
+          <div className="mb-5 flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
+            <div>
+              <h4 className="text-xl font-black text-slate-950">Reporte mensual</h4>
+              <p className="mt-1 text-sm font-semibold text-slate-500">
+                Analisis solo por el mes seleccionado.
+              </p>
+            </div>
+            <label className="grid gap-1 sm:min-w-64">
+              <span className="px-1 text-xs font-black uppercase tracking-[0.12em] text-slate-500">
+                Mes
+              </span>
+              <input
+                type="month"
+                value={reportMonth}
+                onChange={(event) => setReportMonth(event.target.value)}
+                className="cursor-pointer rounded-xl border border-slate-200 bg-white px-3 py-3 text-sm font-semibold outline-none focus:border-[#00D38E]"
+              />
+            </label>
+          </div>
+
+          <div className="mb-5 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            {[
+              { label: "Ventas del mes", value: monthTotal },
+              { label: "Costos del mes", value: monthCost, tone: "text-red-700" },
+              { label: "Ganancia del mes", value: monthProfit, tone: "text-emerald-700" },
+              { label: "Por cobrar", value: monthPending, tone: "text-amber-700" },
+            ].map((card) => (
+              <article key={card.label} className="rounded-2xl border border-slate-200 bg-white p-5">
+                <p className="text-sm font-bold text-slate-500">{card.label}</p>
+                <p className={`mt-2 text-2xl font-black ${card.tone ?? "text-slate-950"}`}>
+                  {currency.format(card.value)}
+                </p>
+              </article>
+            ))}
+          </div>
+
+          <div className="grid gap-4 xl:grid-cols-3">
+            <article className="rounded-2xl border border-slate-200 bg-white p-5">
+              <p className="mb-4 font-black text-slate-950">Ventas del mes por dia</p>
+              <BarChart data={monthDailyReports} valueKey="sales" />
+            </article>
+            <article className="rounded-2xl border border-slate-200 bg-white p-5">
+              <p className="mb-4 font-black text-slate-950">Costos del mes por dia</p>
+              <BarChart data={monthDailyReports} valueKey="cost" color="bg-red-500" />
+            </article>
+            <article className="rounded-2xl border border-slate-200 bg-white p-5">
+              <p className="mb-4 font-black text-slate-950">Ganancia del mes por dia</p>
+              <BarChart data={monthDailyReports} valueKey="profit" color="bg-slate-950" />
+            </article>
+          </div>
+        </div>
+
+        <div className="mb-3">
+          <h4 className="text-xl font-black text-slate-950">Reporte por fechas</h4>
+          <p className="mt-1 text-sm font-semibold text-slate-500">
+            Analisis entre una fecha y otra, con filtro opcional por cliente.
+          </p>
+        </div>
+
+        <div className="mb-6 grid gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-4 md:grid-cols-2 xl:grid-cols-3">
           <label className="grid gap-1">
             <span className="px-1 text-xs font-black uppercase tracking-[0.12em] text-slate-500">
               Cliente
@@ -415,18 +498,6 @@ function FerreteriaSales({
                 </option>
               ))}
             </select>
-          </label>
-
-          <label className="grid gap-1">
-            <span className="px-1 text-xs font-black uppercase tracking-[0.12em] text-slate-500">
-              Mes
-            </span>
-            <input
-              type="month"
-              value={reportMonth}
-              onChange={(event) => setReportMonth(event.target.value)}
-              className="cursor-pointer rounded-xl border border-slate-200 bg-white px-3 py-3 text-sm font-semibold outline-none focus:border-[#00D38E]"
-            />
           </label>
 
           <label className="grid gap-1">
@@ -501,21 +572,6 @@ function FerreteriaSales({
           <article className="rounded-2xl border border-slate-200 p-5">
             <p className="mb-4 font-black text-slate-950">Ganancia neta por dia</p>
             <BarChart data={filteredDailyReports} valueKey="profit" color="bg-slate-950" />
-          </article>
-
-          <article className="rounded-2xl border border-slate-200 p-5">
-            <p className="mb-4 font-black text-slate-950">Ventas por mes</p>
-            <BarChart data={monthData} valueKey="sales" />
-          </article>
-
-          <article className="rounded-2xl border border-slate-200 p-5">
-            <p className="mb-4 font-black text-slate-950">Costos por mes</p>
-            <BarChart data={monthData} valueKey="cost" color="bg-red-500" />
-          </article>
-
-          <article className="rounded-2xl border border-slate-200 p-5">
-            <p className="mb-4 font-black text-slate-950">Ganancia neta por mes</p>
-            <BarChart data={monthData} valueKey="profit" color="bg-slate-950" />
           </article>
 
           <article className="rounded-2xl border border-slate-200 p-5">
