@@ -8,8 +8,8 @@ const socials = [
   },
   {
     label: "Instagram",
-    handle: "@fedeecabello",
-    href: "https://www.instagram.com/fedeecabello/",
+    handle: "@proyectoprisma.com.ar",
+    href: "https://www.instagram.com/proyectoprisma.com.ar/",
     icon: "/icono_ig.png",
     className: "floating-social--instagram",
   },

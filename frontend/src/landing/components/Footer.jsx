@@ -117,11 +117,11 @@ function Footer() {
 
             <div className="mt-6 space-y-3">
               <a
-                href="mailto:prisma@federicocabello.net"
+                href="mailto:proyectoprisma10@gmail.com"
                 className="flex flex-col gap-1 rounded-2xl bg-white/10 px-4 py-3 text-sm font-bold text-white transition hover:bg-[#00D38E] hover:text-[#07111F] sm:flex-row sm:items-center sm:justify-between"
               >
                 <span>📧 Email</span>
-                <span className="break-all">prisma@federicocabello.net</span>
+                <span className="break-all">proyectoprisma10@gmail.com</span>
               </a>
 
               <a
